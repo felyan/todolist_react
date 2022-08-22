@@ -1,14 +1,27 @@
+import React, { useState } from "react";
 import "./App.css";
 import styled from "styled-components";
 import Header from "./components/Header";
 import Form from "./components/Form";
+import Todolist from "./components/Todolist";
 
 function App() {
+  const [input, setInput] = useState("");
+  const [todos, setTodos] = useState([]);
+  const [editTodo, setEditTodo] = useState(null);
   return (
     <Container>
       <AppWrapper>
         <Header />
-        <Form />
+        <Form
+          input={input}
+          setInput={setInput}
+          todos={todos}
+          setTodos={setTodos}
+          editTodo={editTodo}
+          setEditTodo={setEditTodo}
+        />
+        <Todolist todos={todos} setTodos={setTodos} setEditTodo={setEditTodo} />
       </AppWrapper>
     </Container>
   );
@@ -27,7 +40,7 @@ const Container = styled.div`
 
 const AppWrapper = styled.div`
   background-color: #12343b;
-  min-width: 450px;
+  min-width: 600px;
   min-height: 650px;
   padding: 30px;
   box-sizing: border-box;
